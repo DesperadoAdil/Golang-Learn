@@ -25,7 +25,7 @@ func (a *admin) notify()  {
 }
 
 func main()  {
-    u := user{"adil", "1298939544@qq.com"}
+    u := user{"adil", "adil@email.com"}
     sendNotification(&u)
 
     a := admin{"admin", "admin@email.com"}
