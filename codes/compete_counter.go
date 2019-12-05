@@ -1,39 +1,39 @@
 package main
 
 import (
-    "fmt"
-    "runtime"
-    "sync"
+	"fmt"
+	"runtime"
+	"sync"
 )
 
 var (
-    counter int
-    wg sync.WaitGroup
+	counter int
+	wg      sync.WaitGroup
 )
 
-func main()  {
-    wg.Add(2)
+func main() {
+	wg.Add(2)
 
-    fmt.Println("Start Goroutines!")
-    go increaseCounter("A")
-    go increaseCounter("B")
+	fmt.Println("Start Goroutines!")
+	go increaseCounter("A")
+	go increaseCounter("B")
 
-    fmt.Println("Waiting To Finish")
-    wg.Wait()
-    fmt.Println("Terminating Program")
-    fmt.Printf("Final Counter: %d\n", counter)
+	fmt.Println("Waiting To Finish")
+	wg.Wait()
+	fmt.Println("Terminating Program")
+	fmt.Printf("Final Counter: %d\n", counter)
 }
 
-func increaseCounter(prefix string)  {
-    defer wg.Done()
+func increaseCounter(prefix string) {
+	defer wg.Done()
 
-    for count := 0; count < 2; count++ {
-        value := counter
+	for count := 0; count < 2; count++ {
+		value := counter
 
-        runtime.Gosched()
+		runtime.Gosched()
 
-        value++
-        fmt.Printf("%s: %d\n", prefix, value)
-        counter = value
-    }
+		value++
+		fmt.Printf("%s: %d\n", prefix, value)
+		counter = value
+	}
 }

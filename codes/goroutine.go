@@ -1,42 +1,42 @@
 package main
 
 import (
-    "fmt"
-    "runtime"
-    "sync"
+	"fmt"
+	"runtime"
+	"sync"
 )
 
-func main()  {
-    runtime.GOMAXPROCS(1)
+func main() {
+	runtime.GOMAXPROCS(1)
 
-    var wg sync.WaitGroup
-    wg.Add(2)
+	var wg sync.WaitGroup
+	wg.Add(2)
 
-    fmt.Println("Start Goroutines!")
+	fmt.Println("Start Goroutines!")
 
-    go func() {
-        defer wg.Done()
+	go func() {
+		defer wg.Done()
 
-        for count := 0; count < 3; count++ {
-            for char := 'a'; char <= 'z'; char++ {
-                fmt.Printf("%c ", char)
-            }
-            fmt.Printf("\n")
-        }
-    }()
+		for count := 0; count < 3; count++ {
+			for char := 'a'; char <= 'z'; char++ {
+				fmt.Printf("%c ", char)
+			}
+			fmt.Printf("\n")
+		}
+	}()
 
-    go func() {
-        defer wg.Done()
+	go func() {
+		defer wg.Done()
 
-        for count := 0; count < 3; count++ {
-            for char := 'A'; char <= 'Z'; char++ {
-                fmt.Printf("%c ", char)
-            }
-            fmt.Printf("\n")
-        }
-    }()
+		for count := 0; count < 3; count++ {
+			for char := 'A'; char <= 'Z'; char++ {
+				fmt.Printf("%c ", char)
+			}
+			fmt.Printf("\n")
+		}
+	}()
 
-    fmt.Println("Waiting To Finish")
-    wg.Wait()
-    fmt.Println("Terminating Program")
+	fmt.Println("Waiting To Finish")
+	wg.Wait()
+	fmt.Println("Terminating Program")
 }

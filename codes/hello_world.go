@@ -1,18 +1,18 @@
 package main
 
 import (
-    "bytes"
-    "fmt"
-    "io"
-    "os"
+	"bytes"
+	"fmt"
+	"io"
+	"os"
 )
 
-func main()  {
-    var b bytes.Buffer
+func main() {
+	var b bytes.Buffer
 
-    b.Write([]byte("Hello "))
+	b.Write([]byte("Hello "))
 
-    fmt.Fprintf(&b, "World!")
+	fmt.Fprintf(&b, "World!")
 
-    io.Copy(os.Stdout, &b)
+	io.Copy(os.Stdout, &b)
 }
